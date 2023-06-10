@@ -1,4 +1,5 @@
-:- module(UtilModule,[centeredText/2, clearScreen/0, readOptions/1,mapGenres/2, listToString/2, toUpperCase/2]).
+:- module(UtilModule,[centeredText/2, clearScreen/0, readOptions/1,mapGenres/2, listToString/2, toUpperCase/2, listToInt/2, listToBooks/2]).
+:- use_module("BookModule.pl").
 
 centeredText(Text, Width) :-
     string_length(Text, Length),
@@ -69,4 +70,12 @@ toUpperCase(String, StringMaiuscula) :-
     upcase_atom(Atom, AtomMaiusculo),
     atom_string(AtomMaiusculo, StringMaiuscula),!.
 
+listToInt([], []).
+listToInt([String|Resto], [Inteiro|Resultado]) :-
+    atom_number(String, Inteiro),
+    listToInt(Resto, Resultado).
 
+listToBooks([], []).
+listToBooks([Head|Tail], [Book|Resultado]) :-
+    getBookById(Head, Book),
+    listToBooks(Tail, Resultado).

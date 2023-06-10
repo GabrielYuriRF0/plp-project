@@ -31,10 +31,11 @@ checkIsValidSize(Historic, Historic):-
 checkIsValidSize(_,_):-!.
 
 printBookHistoric(User) :-
+    centeredText("Historico de leitura", 60),write("\n"), 
     nth1(7, User, Historic),
     nth1(1, Historic, First),
     split_string(First,",","", FormatedHistoric),
     listToInt(FormatedHistoric, IntList),
     listToBooks(IntList, FinalList),
-    printBooks(FinalList).
+    printBooks(FinalList).%todo wait on screen
 
